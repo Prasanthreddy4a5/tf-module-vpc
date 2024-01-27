@@ -1,5 +1,5 @@
 variable "cidr" {}
-variable "vpc" {}
+
 
 
 
