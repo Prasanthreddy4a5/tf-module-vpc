@@ -1,7 +1,7 @@
 resource "aws_vpc" "main" {
   cidr_block = var.cidr
   tags = {
-    Name = Created By Terraform
+    Name = "Created By Terraform"
   }
 }
 
