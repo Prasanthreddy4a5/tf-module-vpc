@@ -3,6 +3,15 @@ resource "aws_vpc" "main" {
   tags = {
     Name = "Created By Terraform"
   }
+
+  module "subnets" {
+    source  =  "./subnets"
+    for_each =  var.subnets
+    subnets =   each.value["subnets"]
+    vpc_id =    each.value["vpc_id"]
+
+  }
+
 }
 
 
