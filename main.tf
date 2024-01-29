@@ -1,18 +1,19 @@
 resource "aws_vpc" "main" {
   cidr_block = var.cidr
-  tags = {
+  tags       = {
     Name = "Created By Terraform"
   }
-
-  module "subnets" {
-    source  =  "./subnets"
-    for_each =  var.subnets
-    subnets =   each.value["subnets"]
-    vpc_id =    aws_vpc.main.id
+  }
+module "subnets" {
+    source   = "./subnets"
+    for_each = var.subnets
+    subnets  = each.value
+    vpc_id   = aws_vpc.main.id
 
   }
 
-}
+
+
 
 
 #resource "aws_vpc" "main" {
