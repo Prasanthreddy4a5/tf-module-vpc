@@ -1,4 +1,6 @@
-
+output "Subnet_id" {
+  value = lookup(lookup(aws_subnet.main, each.key, null), "id", null)
+}
 
 
 
