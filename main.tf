@@ -4,12 +4,15 @@ resource "aws_vpc" "main" {
     Name = "Created By Terraform"
   }
   }
-#module "subnets" {
-#    source   = "./subnets"
-#    for_each = var.subnets
-#    subnets  = each.value
-#    vpc_id   = aws_vpc.main.id
-#  }
+module "subnets" {
+    source   = "./subnets"
+    for_each = var.subnets
+    subnets  = each.value
+    vpc_id   = aws_vpc.main.id
+    tags = {
+      Name = each.key
+    }
+  }
 
 
 
