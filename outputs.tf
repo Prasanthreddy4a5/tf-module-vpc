@@ -1,9 +1,9 @@
 
 
 
-output "subnets" {
-  value = module.subnets
-}
+#output "subnets" {
+#  value = module.subnets
+#}
 
 #output "natgateway" {
 #  value = aws_nat_gateway.ngw
