@@ -6,7 +6,7 @@ output "subnets" {
 }
 
 output "natgateway" {
-  value = aws_nat_gateway.ngw
+  value = aws_nat_gateway.ngw.allocation_id
 }
 
 #output "public_subnet_ids" {
