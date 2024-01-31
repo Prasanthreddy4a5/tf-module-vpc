@@ -28,6 +28,22 @@ resource "aws_route" "igw" {
   gateway_id = aws_internet_gateway.igw.id
 }
 
+resource "aws_eip" "ngw" {
+  for_each = lookup(lookup(module.subnets, "public", null), "subnet_ids", null)
+  domain   = "vpc"
+}
+
+
+resource "aws_nat_gateway" "ngw" {
+  for_each = lookup(lookup(module.subnets, "public", null), "subnet_ids", null)
+  allocation_id = aws_eip.ngw.id
+  subnet_id     = each.value["id"]
+
+  tags = {
+    Name = each.key
+  }
+}
+
 
 #resource "aws_vpc" "main" {
 #  cidr_block = var.cidr
