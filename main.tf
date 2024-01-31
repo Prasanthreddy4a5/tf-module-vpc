@@ -29,13 +29,13 @@ resource "aws_route" "igw" {
 }
 
 resource "aws_eip" "ngw" {
-  count = local.public_subnet_ids
+  count    = length(local.public_subnet_ids)
   domain   = "vpc"
 }
 
 
 resource "aws_nat_gateway" "ngw" {
-  count = local.public_subnet_ids
+  count         = local.public_subnet_ids
   allocation_id = element(aws_eip.ngw.*.id,count.index )
   subnet_id     = element(local.public_subnet_ids,count.index )
 }
