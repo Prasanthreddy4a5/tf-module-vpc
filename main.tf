@@ -9,6 +9,7 @@ module "subnets" {
     subnets  = each.value
     vpc_id   = aws_vpc.main.id
     tags     = var.tags
+    env      = var.env
   }
 
 resource "aws_internet_gateway" "igw" {
